@@ -30,20 +30,15 @@ To download the content of the first 10 pages :
 ```python
 #app.py
 
-from pages.all_article_links import AllArticleLinks
 from pages.crawler import BoursoramaCrawler
 from parser.article import ArticleParser
 
+article_links = BoursoramaCrawler(number_of_pages=10, video_links=False).run()
 
-crawler = BoursoramaCrawler()
-page_links = crawler.run()  # Generates the urls of the first 10 news pages
-
-for link in page_links:
-    article_links = AllArticleLinks(link).extract_links(video_links=False)
-    for article_link in article_links:
-        print(article_link)
-        print(ArticleParser(article_link).download_all())
-        print("-" * 50)
+for article_link in article_links:
+    print(article_link)
+    print(ArticleParser(article_link).download_all())
+    print("-" * 50)
 ```
 
 To download images only of the first 100 pages :
@@ -51,17 +46,13 @@ To download images only of the first 100 pages :
 ```python
 #app.py
 
-from pages.all_article_links import AllArticleLinks
 from pages.crawler import BoursoramaCrawler
 from parser.article import ArticleParser
 
-crawler = BoursoramaCrawler(number_of_pages=100)
-page_links = crawler.run()  # Generates the urls of the first 100 news pages
+article_links = BoursoramaCrawler(number_of_pages=100, video_links=False).run()
 
-for link in page_links:
-    article_links = AllArticleLinks(link).extract_links(video_links=False)
-    for article_link in article_links:
-        ArticleParser(article_link).download_images()
+for article_link in article_links:
+    ArticleParser(article_link).download_images()
 ```
 
 To parse an article :
