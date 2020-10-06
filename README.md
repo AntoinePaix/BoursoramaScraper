@@ -56,7 +56,7 @@ from pages.crawler import BoursoramaCrawler
 from parser.article import ArticleParser
 
 crawler = BoursoramaCrawler(number_of_pages=100)
-page_links = crawler.run()  # Generates the urls of the first 10 news pages
+page_links = crawler.run()  # Generates the urls of the first 100 news pages
 
 for link in page_links:
     article_links = AllArticleLinks(link).extract_links(video_links=False)
