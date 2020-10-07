@@ -33,12 +33,15 @@ class ArticleParser:
     @property    
     def title(self):
         "Returns the title of the article."
-        return self.soup.title.text
+        return self.soup.title.text[:-13]
     
     @property
     def author(self):
         "Returns the author of the article (most of the time the news agency)."
         return self.soup.select_one(ArticleLocators.AUTHOR).text.strip()
+    
+    def __repr__(self):
+        return f'<Article(url="{self.url}" title="{self.title}" author="{self.author}" id="{self._id}" images={len(self.images())})'
     
     def date(self, timestamp=False):
         "Returns the publication date of the article."

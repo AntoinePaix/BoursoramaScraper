@@ -62,12 +62,11 @@ To parse an article :
 
 from parser.article import ArticleParser
 
-url = "https://www.boursorama.com/actualite-economique/actualites/trump-minimise-la-menace-du-covid-19-et-l-hypothese-de-la-defaite-6759a52dc9f34afa7f065c0a0c5e689d"
+url = "https://www.boursorama.com/actualite-economique/actualites/le-nobel-de-chimie-a-deux-chirurgiennes-des-genes-dont-une-francaise-4ee7deb2cefb65ec0fb9503542bb2047"
 
 parser = ArticleParser(url)
 
-print(parser.title)  # print title
-print(parser.url)  # print url
+print(parser)  # print some infos
 parser.download_images()  # download images
 ```
 
