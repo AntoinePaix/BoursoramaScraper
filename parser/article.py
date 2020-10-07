@@ -41,16 +41,17 @@ class ArticleParser:
         return self.soup.select_one(ArticleLocators.AUTHOR).text.strip()
     
     def __repr__(self):
-        return f'<Article(url="{self.url}" title="{self.title}" author="{self.author}" id="{self._id}" images={len(self.images())})'
+        return f'<Article(url="{self.url}" title="{self.title}" author="{self.author}" date="{self.date()}" id="{self._id}" images={len(self.images())})'
     
     def date(self, timestamp=False):
         "Returns the publication date of the article."
         date = self.soup.select_one(ArticleLocators.DATE).text.strip()
+        date_object = datetime.datetime.strptime(date, "%d/%m/%Y à %H:%M")
         
         if not timestamp:
-            return date
+            return date_object.strftime("%d/%m/%Y %H:%M")
         else:
-            return datetime.datetime.strptime(date, "%d/%m/%Y à %H:%M").timestamp()
+            return int(date_object.timestamp())
         
     @property
     def article_body(self):
@@ -108,7 +109,7 @@ class ArticleParser:
             'url': self.url,
             'title': self.title,
             'author': self.author,
-            'date': self.date,
+            'date': self.date(timestamp=False),
             'article_body': self.article_body,
             'redactors': self.redactors,
             'number_of_comments': self.number_of_comments,
