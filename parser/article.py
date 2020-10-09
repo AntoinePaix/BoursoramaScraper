@@ -1,6 +1,7 @@
 import os
 import csv
 import datetime
+import functools
 
 import requests
 from bs4 import BeautifulSoup
@@ -20,7 +21,7 @@ class ArticleParser:
         "Returns HTML content."
         return requests.get(self.url).content
     
-    @property
+    @functools.cached_property
     def soup(self):
         "Returns beautifulsoup object for parsing."
         return BeautifulSoup(self.html_content(), "html.parser")

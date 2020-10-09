@@ -9,7 +9,7 @@ https://github.com/AntoinePaix
 
 ## Setup
 
-You need **Python version >= 3.6**
+You need **Python version >= 3.8**
 
 ```
 git clone https://github.com/AntoinePaix/BoursoramaScraper.git

@@ -1,6 +1,7 @@
 import os
 import csv
 import datetime
+import functools
 
 import requests
 from bs4 import BeautifulSoup
@@ -12,12 +13,13 @@ class VideoParser:
     def __init__(self, url):
         self.url = url
         self.datas_csv = "video_datas.csv"
-        
+    
     def html_content(self):
         "Returns HTML content"
         return requests.get(self.url).content
     
-    @property
+    
+    @functools.cached_property
     def soup(self):
         "Returns beautifulsoup object for parsing"
         return BeautifulSoup(self.html_content(), "html.parser")
