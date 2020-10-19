@@ -61,7 +61,7 @@ from parser.article import ArticleParser
 article_links = BoursoramaCrawler(number_of_pages=100, video_links=False).run()
 
 for article_link in article_links:
-    ArticleParser(article_link).download_images()
+    ArticleParser(article_link.url).download_images()
 ```
 
 To parse an article :
